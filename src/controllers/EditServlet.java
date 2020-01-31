@@ -36,9 +36,13 @@ public class EditServlet extends HttpServlet {
 
 		 Task t = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
 
+
 		 request.setAttribute("task", t);
 		 request.setAttribute("_token", request.getSession().getId());
 
+	     if(t != null) {
+	         request.getSession().setAttribute("task_id", t.getId());
+	     }
 		 request.getSession().setAttribute("task_id", t.getId());
 
 	     RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
